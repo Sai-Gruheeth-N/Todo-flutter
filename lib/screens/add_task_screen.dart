@@ -12,6 +12,7 @@ class AddTaskScreen extends StatefulWidget {
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
   final textEditingController = TextEditingController();
+  String newTask = '';
 
   String? get _errorText {
     final text = textEditingController.text;
@@ -20,8 +21,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     }
     return null;
   }
-
-  String newTask = '';
 
   @override
   Widget build(BuildContext context) {
