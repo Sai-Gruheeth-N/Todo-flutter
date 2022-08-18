@@ -5,12 +5,26 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:todo_flutter/models/task.dart';
 
-class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({Key? key}) : super(key: key);
+class AddTaskScreen extends StatefulWidget {
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  final textEditingController = TextEditingController();
+
+  String? get _errorText {
+    final text = textEditingController.text;
+    if (text.isEmpty) {
+      return 'Can\'t be empty';
+    }
+    return null;
+  }
+
+  String newTask = '';
 
   @override
   Widget build(BuildContext context) {
-    String newTask = '';
     return Container(
       color: const Color.fromARGB(255, 117, 117, 117),
       child: Container(
@@ -35,14 +49,18 @@ class AddTaskScreen extends StatelessWidget {
                 ),
               ),
               TextField(
+                controller: textEditingController,
                 onChanged: (value) {
-                  newTask = value;
+                  setState(() {
+                    newTask = value;
+                  });
                 },
                 autofocus: true,
                 textCapitalization: TextCapitalization.sentences,
                 textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  focusedBorder: UnderlineInputBorder(
+                decoration: InputDecoration(
+                  errorText: _errorText,
+                  focusedBorder: const UnderlineInputBorder(
                     borderSide:
                         BorderSide(color: Color.fromRGBO(255, 111, 0, 1)),
                   ),
