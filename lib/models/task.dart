@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class Task {
-  final String name;
+  String name;
   int isDone;
   Task({
     required this.name,

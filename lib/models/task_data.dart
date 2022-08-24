@@ -20,6 +20,12 @@ class TaskData extends ChangeNotifier {
     notifyListeners();
   }
 
+  void upDateTaskName(String prevTaskTitle, String updateTaskTitle) async {
+    var task = _tasks.firstWhere((item) => item.name == prevTaskTitle);
+    task.name = updateTaskTitle;
+    notifyListeners();
+  }
+
   void upDateTask(Task task) {
     task.toggleDone();
     notifyListeners();

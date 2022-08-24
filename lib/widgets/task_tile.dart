@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_flutter/screens/update_task_screen.dart';
 
 class TaskTile extends StatelessWidget {
   final int isChecked;
@@ -15,19 +16,45 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: const EdgeInsets.all(0.0),
       onLongPress: longPressCallBack,
-      title: Text(
-        taskTitle,
-        style: TextStyle(
-          color: Colors.black,
-          decoration: isChecked == 1 ? TextDecoration.lineThrough : null,
+      title: Padding(
+        padding: const EdgeInsets.only(left: 15.0),
+        child: Text(
+          taskTitle,
+          style: TextStyle(
+            color: Colors.black,
+            decoration: isChecked == 1 ? TextDecoration.lineThrough : null,
+          ),
         ),
       ),
-      trailing: Checkbox(
-        activeColor: Colors.amber[900],
-        value: isChecked == 0 ? false : true,
-        // onChanged: toggleCheckBoxState,
-        onChanged: checkboxCallBack,
+      trailing: Wrap(
+        children: [
+          IconButton(
+            onPressed: () {
+              showModalBottomSheet(
+                isScrollControlled: true,
+                context: context,
+                builder: (context) => SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: UpdateTaskScreen(
+                      prevTitle: taskTitle,
+                    ),
+                  ),
+                ),
+              );
+            },
+            icon: const Icon(Icons.edit),
+          ),
+          Checkbox(
+            activeColor: Colors.amber[900],
+            value: isChecked == 0 ? false : true,
+            // onChanged: toggleCheckBoxState,
+            onChanged: checkboxCallBack,
+          ),
+        ],
       ),
     );
   }
