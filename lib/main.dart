@@ -15,7 +15,7 @@ class ToDo extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => TaskData(),
       child: const MaterialApp(
-        restorationScopeId: "root",
+        // restorationScopeId: "root",
         debugShowCheckedModeBanner: false,
         home: TasksScreen(),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TaskTile extends StatelessWidget {
-  final bool isChecked;
+  final int isChecked;
   final String taskTitle;
   final Function(bool?) checkboxCallBack;
   final Function() longPressCallBack;
@@ -20,12 +20,12 @@ class TaskTile extends StatelessWidget {
         taskTitle,
         style: TextStyle(
           color: Colors.black,
-          decoration: isChecked ? TextDecoration.lineThrough : null,
+          decoration: isChecked == 1 ? TextDecoration.lineThrough : null,
         ),
       ),
       trailing: Checkbox(
         activeColor: Colors.amber[900],
-        value: isChecked,
+        value: isChecked == 0 ? false : true,
         // onChanged: toggleCheckBoxState,
         onChanged: checkboxCallBack,
       ),

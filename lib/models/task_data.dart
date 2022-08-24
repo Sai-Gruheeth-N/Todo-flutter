@@ -1,9 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'dart:collection';
 import 'package:todo_flutter/models/task.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TaskData extends ChangeNotifier {
-  final List<Task> _tasks = [];
+  List<Task> _tasks = [];
 
   UnmodifiableListView<Task> get tasks {
     return UnmodifiableListView(_tasks);
@@ -26,6 +27,26 @@ class TaskData extends ChangeNotifier {
 
   void removeTask(Task task) {
     _tasks.remove(task);
+    notifyListeners();
+  }
+
+  void sortTaskList() {
+    _tasks.sort((a, b) => a.isDone.compareTo(b.isDone));
+    // notifyListeners();
+  }
+
+  void saveData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String encodedData = Task.encode(tasks);
+    await prefs.setString('task_data', encodedData);
+    notifyListeners();
+  }
+
+  void getData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String taskString = prefs.getString('task_data').toString();
+    List<Task> tasksData = Task.decode(taskString);
+    _tasks = tasksData;
     notifyListeners();
   }
 }

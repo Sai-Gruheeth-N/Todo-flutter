@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_flutter/models/task_data.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
-import 'package:todo_flutter/models/task.dart';
 
 class AddTaskScreen extends StatefulWidget {
   @override
@@ -70,7 +67,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 onPressed: () {
                   Provider.of<TaskData>(context, listen: false)
                       .addTask(newTask);
-
+                  Provider.of<TaskData>(context, listen: false).saveData();
                   Navigator.pop(context);
                 },
                 style: TextButton.styleFrom(
