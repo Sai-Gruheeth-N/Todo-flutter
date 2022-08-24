@@ -85,14 +85,3 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     );
   }
 }
-
-// addTaskCallBack(newTask);
-
-// SharedPreferences prefs = await SharedPreferences.getInstance();
-// final data = Task(
-//   name: newTask,
-//   isDone: false,
-// );
-// String json = jsonEncode(data);
-// // print('Generated Json : $json');
-// prefs.setString('newTaskData', json);
