@@ -3,11 +3,10 @@ import 'dart:convert';
 class Task {
   String name;
   int isDone;
-  Task({
-    required this.name,
-    this.isDone = 0,
-    // 0 = false and 1 = true
-  });
+  String dateTime;
+  Task({required this.name, this.isDone = 0, required this.dateTime
+      // 0 = false and 1 = true
+      });
 
   Map<String, dynamic> toJson() {
     return {
@@ -22,11 +21,13 @@ class Task {
 
   Task.fromJson(Map<String, dynamic> jsonData)
       : name = jsonData['name'],
-        isDone = jsonData['isDone'];
+        isDone = jsonData['isDone'],
+        dateTime = jsonData['dateTime'];
 
   static Map<String, dynamic> toMap(Task task) => {
         'name': task.name,
         'isDone': task.isDone,
+        'dateTime': task.dateTime,
       };
 
   static String encode(List<Task> tasks) {

@@ -6,13 +6,16 @@ class TaskTile extends StatelessWidget {
   final String taskTitle;
   final Function(bool?) checkboxCallBack;
   final Function() longPressCallBack;
+  final String dateTime;
   const TaskTile({
     super.key,
     required this.isChecked,
     required this.taskTitle,
     required this.checkboxCallBack,
     required this.longPressCallBack,
+    required this.dateTime,
   });
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -20,12 +23,26 @@ class TaskTile extends StatelessWidget {
       onLongPress: longPressCallBack,
       title: Padding(
         padding: const EdgeInsets.only(left: 15.0),
-        child: Text(
-          taskTitle,
-          style: TextStyle(
-            color: Colors.black,
-            decoration: isChecked == 1 ? TextDecoration.lineThrough : null,
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              taskTitle,
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.black,
+                decoration: isChecked == 1 ? TextDecoration.lineThrough : null,
+              ),
+            ),
+            Text(
+              dateTime,
+              style: TextStyle(
+                fontSize: 14.0,
+                color: Colors.grey[500],
+                decoration: isChecked == 1 ? TextDecoration.lineThrough : null,
+              ),
+            ),
+          ],
         ),
       ),
       trailing: Wrap(

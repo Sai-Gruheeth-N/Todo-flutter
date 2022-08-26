@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'dart:collection';
 import 'package:todo_flutter/models/task.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intl/intl.dart';
 
 class TaskData extends ChangeNotifier {
   List<Task> _tasks = [];
@@ -15,7 +16,11 @@ class TaskData extends ChangeNotifier {
   }
 
   void addTask(String newTaskTitle) async {
-    final task = Task(name: newTaskTitle);
+    final task = Task(
+        name: newTaskTitle,
+        dateTime: DateFormat('yyyy-MM-dd – kk:mm:ss')
+            .format(DateTime.now())
+            .toString());
     _tasks.add(task);
     notifyListeners();
   }
