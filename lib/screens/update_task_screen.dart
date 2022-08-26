@@ -50,7 +50,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                 controller: textEditingController,
                 onChanged: (value) {
                   setState(() {
-                    newTask = value;
+                    newTask = value.trim();
                   });
                 },
                 autofocus: true,
@@ -67,10 +67,12 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
               const SizedBox(height: 30.0),
               TextButton(
                 onPressed: () {
-                  Provider.of<TaskData>(context, listen: false)
-                      .upDateTaskName(widget.prevTitle, newTask);
-                  Provider.of<TaskData>(context, listen: false).saveData();
-                  Navigator.pop(context);
+                  if (newTask.isNotEmpty) {
+                    Provider.of<TaskData>(context, listen: false)
+                        .upDateTaskName(widget.prevTitle, newTask);
+                    Provider.of<TaskData>(context, listen: false).saveData();
+                    Navigator.pop(context);
+                  }
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.amber[900],

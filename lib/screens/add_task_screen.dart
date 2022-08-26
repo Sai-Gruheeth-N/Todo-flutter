@@ -48,7 +48,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 controller: textEditingController,
                 onChanged: (value) {
                   setState(() {
-                    newTask = value;
+                    newTask = value.trim();
                   });
                 },
                 autofocus: true,
@@ -65,10 +65,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               const SizedBox(height: 30.0),
               TextButton(
                 onPressed: () {
-                  Provider.of<TaskData>(context, listen: false)
-                      .addTask(newTask);
-                  Provider.of<TaskData>(context, listen: false).saveData();
-                  Navigator.pop(context);
+                  if (newTask.isNotEmpty) {
+                    Provider.of<TaskData>(context, listen: false)
+                        .addTask(newTask);
+                    Provider.of<TaskData>(context, listen: false).saveData();
+                    Navigator.pop(context);
+                  }
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.amber[900],
