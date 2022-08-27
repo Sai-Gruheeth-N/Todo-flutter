@@ -1,16 +1,10 @@
 # todo_flutter
+This application is scripted using Dart language and Flutter framework. Uses packages like provider for state managament and certain packages to maintain the functional aspects.
+This app is clearly used to note down any kind of tasks that have to be executed and can be ticked off once done.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Operations:
+1. Create task - Add task by clicking on the + icon on the bottom right.
+2. Read task - The task once added is displayed on to the screen with its time of creation.
+3. Update task - Click on the edit icon to edit and task and update it.
+4. Delete task - Long press on the task to delete it.
+5. Check off the task - Click on the checkbox to checkoff the task. It will automatically go to the bottom once checked.
